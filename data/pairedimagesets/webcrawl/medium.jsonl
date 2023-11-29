@@ -1,0 +1,50 @@
+{"set1": "SUVs on a road", "set2": "Sedans on a road", "difference": "Vehicle design (SUVs vs Sedans)"}
+{"set1": "Wooden chairs in a room", "set2": "Plastic chairs in a room", "difference": "Material (Wood vs Plastic)"}
+{"set1": "Golden retriever dogs playing", "set2": "Labrador dogs playing", "difference": "Dog breed (Golden retriever vs Labrador)"}
+{"set1": "Men wearing suits", "set2": "Men wearing tuxedos", "difference": "Formal attire type (Suit vs Tuxedo)"}
+{"set1": "Green apples in a basket", "set2": "Red apples in a basket", "difference": "Color (Green vs Red)"}
+{"set1": "Leather shoes on display", "set2": "Canvas shoes on display", "difference": "Material (Leather vs Canvas)"}
+{"set1": "Freshwater fish in an aquarium", "set2": "Saltwater fish in an aquarium", "difference": "Water type (Freshwater vs Saltwater)"}
+{"set1": "Steel bridges over a river", "set2": "Wooden bridges over a river", "difference": "Construction material (Steel vs Wood)"}
+{"set1": "Mountain bikes on a trail", "set2": "Road bikes on a road", "difference": "Bike type (Mountain vs Road)"}
+{"set1": "Butterflies with spotted wings", "set2": "Butterflies with striped wings", "difference": "Pattern (Spotted vs Striped)"}
+{"set1": "Ceramic mugs on a shelf", "set2": "Glass mugs on a shelf", "difference": "Material (Ceramic vs Glass)"}
+{"set1": "People playing electric guitars", "set2": "People playing acoustic guitars", "difference": "Guitar type (Electric vs Acoustic)"}
+{"set1": "Oak trees in summer", "set2": "Oak trees in autumn", "difference": "Season (Summer vs Autumn)"}
+{"set1": "Tennis shoes on a rack", "set2": "Running shoes on a rack", "difference": "Shoe purpose (Tennis vs Running)"}
+{"set1": "Laptop computers on a desk", "set2": "Desktop computers on a desk", "difference": "Computer type (Laptop vs Desktop)"}
+{"set1": "People playing classical violin", "set2": "People playing fiddle", "difference": "Instrument style (Classical violin vs Fiddle)"}
+{"set1": "Hardcover books on a table", "set2": "Paperback books on a table", "difference": "Book binding (Hardcover vs Paperback)"}
+{"set1": "Men wearing fedoras", "set2": "Men wearing baseball caps", "difference": "Hat type (Fedora vs Baseball cap)"}
+{"set1": "Digital clocks on a wall", "set2": "Analog clocks on a wall", "difference": "Clock type (Digital vs Analog)"}
+{"set1": "Children playing with toy cars", "set2": "Children playing with toy trains", "difference": "Toy type (Cars vs Trains)"}
+{"set1": "White roses in a vase", "set2": "Pink roses in a vase", "difference": "Color (White vs Pink)"}
+{"set1": "Electric stoves in a kitchen", "set2": "Gas stoves in a kitchen", "difference": "Stove type (Electric vs Gas)"}
+{"set1": "Leather jackets on hangers", "set2": "Denim jackets on hangers", "difference": "Material (Leather vs Denim)"}
+{"set1": "People eating with chopsticks", "set2": "People eating with forks", "difference": "Eating utensil (Chopsticks vs Forks)"}
+{"set1": "Passenger planes in the sky", "set2": "Cargo planes in the sky", "difference": "Plane purpose (Passenger vs Cargo)"}
+{"set1": "Pearl necklaces on display", "set2": "Gold necklaces on display", "difference": "Material (Pearl vs Gold)"}
+{"set1": "Mushrooms in a forest", "set2": "Ferns in a forest", "difference": "Plant type (Mushrooms vs Ferns)"}
+{"set1": "Women wearing ankle boots", "set2": "Women wearing knee-high boots", "difference": "Boot height (Ankle vs Knee-high)"}
+{"set1": "Diesel trucks on a highway", "set2": "Electric trucks on a highway", "difference": "Fuel type (Diesel vs Electric)"}
+{"set1": "Children reading comic books", "set2": "Children reading fairy tales", "difference": "Book genre (Comics vs Fairy tales)"}
+{"set1": "Stainless steel kettles in a store", "set2": "Plastic kettles in a store", "difference": "Material (Stainless steel vs Plastic)"}
+{"set1": "Men wearing round glasses", "set2": "Men wearing square glasses", "difference": "Glasses shape (Round vs Square)"}
+{"set1": "Porcelain vases on a shelf", "set2": "Metal vases on a shelf", "difference": "Material (Porcelain vs Metal)"}
+{"set1": "Vintage cars on a road", "set2": "Modern cars on a road", "difference": "Car era (Vintage vs Modern)"}
+{"set1": "Handmade quilts on a bed", "set2": "Factory-made blankets on a bed", "difference": "Production method (Handmade vs Factory-made)"}
+{"set1": "Shiny silk dresses on mannequins", "set2": "Matte cotton dresses on mannequins", "difference": "Material and finish (Silk/Shiny vs Cotton/Matte)"}
+{"set1": "Mechanical pencils on a desk", "set2": "Ballpoint pens on a desk", "difference": "Writing instrument (Mechanical pencil vs Ballpoint pen)"}
+{"set1": "Ginger cats lying down", "set2": "Tabby cats lying down", "difference": "Cat coat pattern (Ginger vs Tabby)"}
+{"set1": "Vinyl records in a store", "set2": "CDs in a store", "difference": "Music format (Vinyl vs CD)"}
+{"set1": "Bonsai trees in pots", "set2": "Cacti in pots", "difference": "Plant type (Bonsai vs Cacti)"}
+{"set1": "People riding racing horses", "set2": "People riding dressage horses", "difference": "Horseback activity (Racing vs Dressage)"}
+{"set1": "Steel water bottles on a table", "set2": "Glass water bottles on a table", "difference": "Material (Steel vs Glass)"}
+{"set1": "Men wearing leather gloves", "set2": "Men wearing wool gloves", "difference": "Material (Leather vs Wool)"}
+{"set1": "Rubber ducks in a tub", "set2": "Plastic boats in a tub", "difference": "Toy material and type (Rubber/Duck vs Plastic/Boat)"}
+{"set1": "Porcelain tea cups on a tray", "set2": "Glass tea cups on a tray", "difference": "Material (Porcelain vs Glass)"}
+{"set1": "Sparrows on a tree", "set2": "Canaries on a tree", "difference": "Bird species (Sparrow vs Canary)"}
+{"set1": "Shiny metallic cars", "set2": "Matte finish cars", "difference": "Car finish (Shiny/Metallic vs Matte)"}
+{"set1": "Stuffed teddy bears on a bed", "set2": "Stuffed bunny rabbits on a bed", "difference": "Stuffed animal type (Teddy bear vs Bunny rabbit)"}
+{"set1": "Round dinner plates on a table", "set2": "Square dinner plates on a table", "difference": "Plate shape (Round vs Square)"}
+{"set1": "Butter on a slice of bread", "set2": "Jam on a slice of bread", "difference": "Spread type (Butter vs Jam)"}

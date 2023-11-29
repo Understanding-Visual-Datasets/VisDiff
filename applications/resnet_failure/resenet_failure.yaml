@@ -1,0 +1,4 @@
+data:
+  name: resnet_failure_imagenet
+  group1: incorrect
+  group2: correct

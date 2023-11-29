@@ -1,0 +1,4 @@
+data:
+  name: imagenetV2
+  group1: imagenet_v2
+  group2: imagenet

@@ -1,0 +1,71 @@
+project: VisDiff
+wandb: true  # whether to log to wandb
+seed: 0  # random seed
+
+data:
+  root: ./data
+  name: Data  # name of dataset
+  group1: "A"  # name of group 1
+  group2: "B"  # name of group 2
+  purity: 1.0  # how much of each concept is in each group (1.0 means perfect seperation, 0.5 means perfect mix)
+  subset: False # if you want to use a subset of the dataset, set this to name of the desired subset value
+
+captioner:
+  model: blip  # model used in method
+  prompt: "Describe this image in detail."  # prompt to use # "describe this image in detail." (for llava cache)
+
+# proposer:  # TF-IDF Proposer
+#   method: TFIDFProposer  # how to propose hypotheses
+#   num_rounds: 1  # number of rounds to propose
+#   num_samples: 20  # number of samples per group to use
+#   sampling_method: random  # how to sample
+#   num_hypotheses: 10  # number of hypotheses to generate per round
+
+# proposer:  # VLM Proposer
+#   method: VLMProposer  # how to propose hypotheses
+#   model: llava
+#   num_rounds: 3  # number of rounds to propose
+#   num_samples: 20  # number of samples per group to use
+#   sampling_method: random  # how to sample
+#   num_hypotheses: 10  # number of hypotheses to generate per round
+#   prompt: VLM_PROMPT  # prompt to use
+
+proposer:  # LLM Proposer
+  method: LLMProposer  # how to propose hypotheses
+  model: gpt-4  # model used in method
+  num_rounds: 3  # number of rounds to propose
+  num_samples: 20  # number of samples per group to use
+  sampling_method: random  # how to sample
+  num_hypotheses: 10  # number of hypotheses to generate per round
+  prompt: CLIP_FRIENDLY  # prompt to use
+
+# proposer:  # VLM Feature Proposer
+#   method: VLMFeatureProposer  # how to propose hypotheses
+#   num_rounds: 3  # number of rounds to propose
+#   num_samples: 20  # number of samples per group to use
+#   sampling_method: random  # how to sample
+#   num_hypotheses: 10  # number of hypotheses to generate per round
+
+validator:  # CLIP Validator
+  method: CLIPValidator  # how to validate and rank hypotheses
+  clip_model: ViT-bigG-14  # clip model to use for validation
+  clip_dataset: laion2b_s39b_b160k  # clip dataset to use for validation
+  max_num_samples: 5000  # maximum number of samples to use for validation
+  classify_threshold: 0.3  # threshold for clip classification
+
+# validator:  # LLM Validator
+#   method: LLMValidator  # how to validate and rank hypotheses
+#   captioner_model: llava  # captioner to use for validation
+#   captioner_prompt: "describe this image in detail."
+#   model: vicuna  # model used in method
+#   classify_threshold: 0.5  # threshold for clip classification
+
+# validator:  # VLM Validator
+#   method: VLMValidator  # how to validate and rank hypotheses
+#   model: llava  # model used in method
+#   classify_threshold: 0.5  # threshold for clip classification
+
+evaluator:
+  method: GPTEvaluator  # how to evaluate hypotheses
+  model: gpt-4  # model used in method
+  n_hypotheses: 5  # number of hypotheses to evaluate

@@ -1,0 +1,50 @@
+{"set1": "Dogs playing in a park", "set2": "Cats playing in a park", "difference": "Animal species (Dogs vs Cats)"}
+{"set1": "Children playing soccer", "set2": "Children swimming in a pool", "difference": "Activity (Soccer vs Swimming)"}
+{"set1": "Snow-covered mountains", "set2": "Desert sand dunes", "difference": "Landscape (Mountains vs Desert)"}
+{"set1": "Butterflies on flowers", "set2": "Bees on flowers", "difference": "Insect type (Butterflies vs Bees)"}
+{"set1": "People shopping in a mall", "set2": "People dining in a restaurant", "difference": "Activity (Shopping vs Dining)"}
+{"set1": "Elephants in the savannah", "set2": "Giraffes in the savannah", "difference": "Animal species (Elephants vs Giraffes)"}
+{"set1": "Birds flying in the sky", "set2": "Airplanes flying in the sky", "difference": "Flying object (Birds vs Airplanes)"}
+{"set1": "Boats in a marina", "set2": "Cars in a parking lot", "difference": "Vehicle type (Boats vs Cars)"}
+{"set1": "Tulips in a garden", "set2": "Roses in a garden", "difference": "Flower type (Tulips vs Roses)"}
+{"set1": "People skiing on a slope", "set2": "People snowboarding on a slope", "difference": "Snow activity (Skiing vs Snowboarding)"}
+{"set1": "Fish in an aquarium", "set2": "Turtles in an aquarium", "difference": "Aquatic animal (Fish vs Turtles)"}
+{"set1": "Books on a shelf", "set2": "Plants on a shelf", "difference": "Shelf item (Books vs Plants)"}
+{"set1": "Grapes in a bowl", "set2": "Apples in a bowl", "difference": "Fruit type (Grapes vs Apples)"}
+{"set1": "Motorcycles on a street", "set2": "Bicycles on a street", "difference": "Vehicle type (Motorcycles vs Bicycles)"}
+{"set1": "Cows grazing in a field", "set2": "Sheep grazing in a field", "difference": "Livestock (Cows vs Sheep)"}
+{"set1": "Babies in cribs", "set2": "Babies in strollers", "difference": "Baby setting (Cribs vs Strollers)"}
+{"set1": "Hot air balloons in the air", "set2": "Kites in the air", "difference": "Airborne item (Balloons vs Kites)"}
+{"set1": "Penguins in the snow", "set2": "Seals in the snow", "difference": "Arctic animal (Penguins vs Seals)"}
+{"set1": "Lions in a jungle", "set2": "Monkeys in a jungle", "difference": "Jungle animal (Lions vs Monkeys)"}
+{"set1": "Watches on a display", "set2": "Rings on a display", "difference": "Accessory type (Watches vs Rings)"}
+{"set1": "Pizzas in a box", "set2": "Donuts in a box", "difference": "Food type (Pizzas vs Donuts)"}
+{"set1": "Bricks on a wall", "set2": "Tiles on a wall", "difference": "Wall material (Bricks vs Tiles)"}
+{"set1": "Pianos in a room", "set2": "Guitars in a room", "difference": "Musical instrument (Pianos vs Guitars)"}
+{"set1": "Trains on tracks", "set2": "Buses on roads", "difference": "Transport mode (Trains vs Buses)"}
+{"set1": "Pots on a stove", "set2": "Plates on a table", "difference": "Kitchen item placement (Stove vs Table)"}
+{"set1": "Stars in the night sky", "set2": "Clouds in the day sky", "difference": "Sky view (Night vs Day)"}
+{"set1": "Sunflowers in a field", "set2": "Wheat in a field", "difference": "Plant type (Sunflowers vs Wheat)"}
+{"set1": "Dolls on a shelf", "set2": "Teddy bears on a shelf", "difference": "Toy type (Dolls vs Teddy bears)"}
+{"set1": "Pine trees in a forest", "set2": "Oak trees in a forest", "difference": "Tree type (Pine vs Oak)"}
+{"set1": "Men playing basketball", "set2": "Women playing volleyball", "difference": "Sport and gender (Basketball/Men vs Volleyball/Women)"}
+{"set1": "Ice cream in a cone", "set2": "Juice in a glass", "difference": "Type of refreshment (Ice cream vs Juice)"}
+{"set1": "Dancers on a stage", "set2": "Singers on a stage", "difference": "Performance type (Dancing vs Singing)"}
+{"set1": "Rainbows in the sky", "set2": "Lightning in the sky", "difference": "Sky phenomenon (Rainbows vs Lightning)"}
+{"set1": "Towers in a city", "set2": "Houses in a suburb", "difference": "Building type (Towers vs Houses)"}
+{"set1": "Frogs by a pond", "set2": "Ducks by a pond", "difference": "Pond animal (Frogs vs Ducks)"}
+{"set1": "Football players on a field", "set2": "Rugby players on a field", "difference": "Sport type (Football vs Rugby)"}
+{"set1": "Pillows on a bed", "set2": "Blankets on a bed", "difference": "Bed item (Pillows vs Blankets)"}
+{"set1": "Deer in a forest", "set2": "Rabbits in a forest", "difference": "Forest animal (Deer vs Rabbits)"}
+{"set1": "Tea in a cup", "set2": "Coffee in a cup", "difference": "Beverage type (Tea vs Coffee)"}
+{"set1": "Children on a slide", "set2": "Children on a swing", "difference": "Playground equipment (Slide vs Swing)"}
+{"set1": "Kangaroos in a desert", "set2": "Camels in a desert", "difference": "Desert animal (Kangaroos vs Camels)"}
+{"set1": "Tomatoes in a basket", "set2": "Eggs in a basket", "difference": "Basket content (Tomatoes vs Eggs)"}
+{"set1": "People in an elevator", "set2": "People on an escalator", "difference": "Vertical transport (Elevator vs Escalator)"}
+{"set1": "Sandcastles on a beach", "set2": "Umbrellas on a beach", "difference": "Beach item (Sandcastles vs Umbrellas)"}
+{"set1": "Mice in a barn", "set2": "Horses in a barn", "difference": "Barn animal (Mice vs Horses)"}
+{"set1": "Chocolates in a box", "set2": "Candies in a jar", "difference": "Sweet treat and container (Chocolates/Box vs Candies/Jar)"}
+{"set1": "Zebra crossings on a street", "set2": "Traffic lights on a street", "difference": "Traffic control (Zebra crossing vs Traffic lights)"}
+{"set1": "Bridges over a river", "set2": "Boats on a river", "difference": "River feature (Bridges vs Boats)"}
+{"set1": "Oranges on a tree", "set2": "Bird nests on a tree", "difference": "Tree attachment (Oranges vs Bird nests)"}
+{"set1": "Lanterns in a festival", "set2": "Fireworks in a festival", "difference": "Festival illumination (Lanterns vs Fireworks)"}

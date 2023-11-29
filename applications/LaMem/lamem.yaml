@@ -1,0 +1,5 @@
+data:
+  name: LaMem
+  group1: memorable
+  group2: not memorable
+  subset: train

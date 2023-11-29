@@ -1,0 +1,50 @@
+{"set1": "Sunrise over Santorini, Greece", "set2": "Sunset over Santorini, Greece", "difference": "Time of day (Sunrise vs Sunset)"}
+{"set1": "Bengal cat in sitting posture", "set2": "Siamese cat in sitting posture", "difference": "Cat breed (Bengal vs Siamese)"}
+{"set1": "People practicing yoga in a mountainous setting", "set2": "People meditating in a mountainous setting", "difference": "Activity (Yoga vs Meditation)"}
+{"set1": "Fresh sushi with salmon topping", "set2": "Fresh sushi with tuna topping", "difference": "Fish type (Salmon vs Tuna)"}
+{"set1": "Violinists playing in a quartet", "set2": "Cellists playing in a quartet", "difference": "Instrument (Violin vs Cello)"}
+{"set1": "Lush vineyards in spring", "set2": "Lush vineyards in early autumn", "difference": "Season (Spring vs Early Autumn)"}
+{"set1": "Men wearing Rolex watches", "set2": "Men wearing Omega watches", "difference": "Watch brand (Rolex vs Omega)"}
+{"set1": "Cupcakes topped with buttercream", "set2": "Cupcakes topped with fondant", "difference": "Icing type (Buttercream vs Fondant)"}
+{"set1": "People playing chess outdoors", "set2": "People playing checkers outdoors", "difference": "Board game (Chess vs Checkers)"}
+{"set1": "Gothic cathedrals in Europe", "set2": "Baroque churches in Europe", "difference": "Architectural style (Gothic vs Baroque)"}
+{"set1": "Hand-painted porcelain plates", "set2": "Hand-painted ceramic plates", "difference": "Material (Porcelain vs Ceramic)"}
+{"set1": "Cyclists in a time-trial race", "set2": "Cyclists in a mountain stage race", "difference": "Race type (Time-trial vs Mountain stage)"}
+{"set1": "Gardens with Japanese cherry blossoms", "set2": "Gardens with Japanese maples", "difference": "Plant (Cherry blossoms vs Maples)"}
+{"set1": "People dancing tango", "set2": "People dancing waltz", "difference": "Dance style (Tango vs Waltz)"}
+{"set1": "Abstract oil paintings with warm colors", "set2": "Abstract oil paintings with cool colors", "difference": "Color temperature (Warm vs Cool)"}
+{"set1": "People wearing traditional Korean hanboks", "set2": "People wearing traditional Japanese kimonos", "difference": "Traditional attire (Hanbok vs Kimono)"}
+{"set1": "Alpine lakes in summer", "set2": "Alpine lakes in early spring", "difference": "Season (Summer vs Early Spring)"}
+{"set1": "Merlot wine in a glass", "set2": "Cabernet Sauvignon wine in a glass", "difference": "Wine type (Merlot vs Cabernet Sauvignon)"}
+{"set1": "Football players in defensive formation", "set2": "Football players in offensive formation", "difference": "Formation (Defensive vs Offensive)"}
+{"set1": "Classic novels from the 19th century", "set2": "Modern novels from the 21st century", "difference": "Publication era (19th vs 21st century)"}
+{"set1": "Orchestras playing Baroque music", "set2": "Orchestras playing Classical music", "difference": "Musical period (Baroque vs Classical)"}
+{"set1": "Men in British army uniforms from WWI", "set2": "Men in British army uniforms from WWII", "difference": "War period (WWI vs WWII)"}
+{"set1": "Sculptures from the Renaissance era", "set2": "Sculptures from the Hellenistic era", "difference": "Artistic period (Renaissance vs Hellenistic)"}
+{"set1": "People preparing macarons", "set2": "People preparing meringues", "difference": "Dessert (Macarons vs Meringues)"}
+{"set1": "Female ballet dancers in pointe shoes", "set2": "Female ballet dancers in ballet slippers", "difference": "Shoe type (Pointe shoes vs Ballet slippers)"}
+{"set1": "Dishes from Northern Italian cuisine", "set2": "Dishes from Southern Italian cuisine", "difference": "Regional cuisine (Northern vs Southern Italy)"}
+{"set1": "Classic rock bands performing", "set2": "Alternative rock bands performing", "difference": "Music genre (Classic rock vs Alternative rock)"}
+{"set1": "Candies made from dark chocolate", "set2": "Candies made from milk chocolate", "difference": "Chocolate type (Dark vs Milk)"}
+{"set1": "Historical films set in Medieval Europe", "set2": "Historical films set in Ancient Rome", "difference": "Historical setting (Medieval Europe vs Ancient Rome)"}
+{"set1": "Bonsai trees shaped in cascade style", "set2": "Bonsai trees shaped in informal upright style", "difference": "Bonsai shaping style (Cascade vs Informal upright)"}
+{"set1": "Lace wedding dresses", "set2": "Satin wedding dresses", "difference": "Fabric (Lace vs Satin)"}
+{"set1": "Birds with iridescent plumage", "set2": "Birds with matte plumage", "difference": "Plumage finish (Iridescent vs Matte)"}
+{"set1": "Women wearing matte lipstick", "set2": "Women wearing glossy lipstick", "difference": "Lipstick finish (Matte vs Glossy)"}
+{"set1": "Rivers in tropical rainforests", "set2": "Rivers in alpine meadows", "difference": "Landscape (Tropical rainforest vs Alpine meadow)"}
+{"set1": "Cities with Gothic architecture", "set2": "Cities with Modernist architecture", "difference": "Architectural style (Gothic vs Modernist)"}
+{"set1": "Poems written in free verse", "set2": "Poems written in sonnet form", "difference": "Poem structure (Free verse vs Sonnet)"}
+{"set1": "Acoustic guitars being played", "set2": "Classical guitars being played", "difference": "Guitar type (Acoustic vs Classical)"}
+{"set1": "Cars from the 1960s", "set2": "Cars from the 1980s", "difference": "Decade of production (1960s vs 1980s)"}
+{"set1": "Books with hardcover binding", "set2": "Books with leather-bound covers", "difference": "Cover material (Hardcover vs Leather-bound)"}
+{"set1": "Seascapes during a storm", "set2": "Seascapes during a calm day", "difference": "Weather (Stormy vs Calm)"}
+{"set1": "Fruits arranged in a still life setting", "set2": "Flowers arranged in a still life setting", "difference": "Subject (Fruits vs Flowers)"}
+{"set1": "Portraits painted in cubist style", "set2": "Portraits painted in impressionist style", "difference": "Art style (Cubist vs Impressionist)"}
+{"set1": "Dishes from Thai cuisine", "set2": "Dishes from Vietnamese cuisine", "difference": "Cuisine origin (Thai vs Vietnamese)"}
+{"set1": "Wild horses in American plains", "set2": "Wild zebras in African savannahs", "difference": "Species and habitat (Horses/Plains vs Zebras/Savannahs)"}
+{"set1": "Residential buildings in Art Deco style", "set2": "Residential buildings in Brutalist style", "difference": "Architectural style (Art Deco vs Brutalist)"}
+{"set1": "Male professional swimmers in freestyle race", "set2": "Male professional swimmers in butterfly race", "difference": "Swimming style (Freestyle vs Butterfly)"}
+{"set1": "Basketball players attempting free throws", "set2": "Basketball players attempting slam dunks", "difference": "Shot type (Free throw vs Slam dunk)"}
+{"set1": "Cakes decorated with marzipan", "set2": "Cakes decorated with buttercream roses", "difference": "Decoration (Marzipan vs Buttercream roses)"}
+{"set1": "Classic movies in black and white", "set2": "Classic movies in Technicolor", "difference": "Film coloring method (Black and white vs Technicolor)"}
+{"set1": "People practicing the Sun Salutation in yoga", "set2": "People practicing the Tree Pose in yoga", "difference": "Yoga pose (Sun Salutation vs Tree Pose)"}

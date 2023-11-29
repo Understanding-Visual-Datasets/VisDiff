@@ -1,0 +1,4 @@
+data:
+  name: VisDiffBench
+  group1: "Dogs playing in a park"
+  group2: "Cats playing in a park"
