@@ -8,10 +8,8 @@ from tqdm import tqdm
 
 import wandb
 from components.evaluator import GPTEvaluator, NullEvaluator
-from components.proposer import LLMProposer, VLMFeatureProposer, VLMProposer
+from components.proposer import LLMProposer, LLMProposerDiffusion, VLMFeatureProposer, VLMProposer
 from components.ranker import CLIPRanker, LLMRanker, NullRanker, VLMRanker
-
-logging.basicConfig(level=logging.INFO)
 
 
 def load_config(config: str) -> Dict:
@@ -62,12 +60,17 @@ def propose(args: Dict, dataset1: List[Dict], dataset2: List[Dict]) -> List[str]
     if args["wandb"]:
         wandb.log(
             {
-                "logs": wandb.Table(dataframe=pd.DataFrame(logs)),
-                "images": wandb.Table(dataframe=pd.DataFrame(images)),
+                "logs": wandb.Table(dataframe=pd.DataFrame(logs))
             }
         )
+        for i in range(len(images)):
+            wandb.log(
+                {
+                    f"{dataset1[0]['group_name']}-images": images[i]['images_group_1'],
+                    f"{dataset2[0]['group_name']}-images":images[i]['images_group_2'],
+                }
+            )
     return hypotheses
-
 
 def rank(
     args: Dict,
@@ -85,6 +88,9 @@ def rank(
     if args["wandb"]:
         table_hypotheses = wandb.Table(dataframe=pd.DataFrame(scored_hypotheses))
         wandb.log({"scored hypotheses": table_hypotheses})
+        for i in range(5):
+            wandb.summary[f"top_{i}_hypothesis"] = scored_hypotheses[i]['hypothesis'].replace("\"", "")
+            wandb.summary[f"top_{i}_score"] = scored_hypotheses[i]['auroc']
 
     scored_groundtruth = ranker.rerank_hypotheses(
         group_names,
@@ -127,7 +133,7 @@ def main(config):
 
     logging.info("Loading data...")
     dataset1, dataset2, group_names = load_data(args)
-    print(dataset1, dataset2, group_names)
+    # print(dataset1, dataset2, group_names)
 
     logging.info("Proposing hypotheses...")
     hypotheses = propose(args, dataset1, dataset2)

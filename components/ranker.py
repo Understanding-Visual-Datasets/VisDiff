@@ -39,7 +39,6 @@ def plot_distributions(similarity_A_C, similarity_B_C, hypothesis=""):
     ax[0].set_title(f"Histogram of Cosine Similarities to \n{hypothesis}")
     ax[0].set_ylabel("Density")
     ax[0].legend()
-    # ax[0].grid(True, which='both', linestyle='--', linewidth=0.5)
 
     # KDE plot
     sns.kdeplot(similarity_A_C, fill=True, ax=ax[1], label="Group A")
@@ -48,16 +47,13 @@ def plot_distributions(similarity_A_C, similarity_B_C, hypothesis=""):
         f"Kernel Density Estimation of Cosine Similarities to \n{hypothesis}"
     )
     ax[1].set_ylabel("Density")
-    # ax[1].grid(True, which='both', linestyle='--', linewidth=0.5)
 
     # Boxplot
     sns.boxplot(x="Group", y="Similarity to C", data=df, ax=ax[2])
     ax[2].set_title(f"Boxplot of Cosine Similarities to \n{hypothesis}")
-    # ax[2].grid(True, which='both', linestyle='--', linewidth=0.5)
 
     # Adjust layout
     plt.tight_layout()
-    # wandb.log({"distributions": wandb.Image(fig)})
     return fig
 
 

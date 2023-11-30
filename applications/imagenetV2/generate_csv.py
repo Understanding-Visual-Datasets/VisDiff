@@ -1,6 +1,7 @@
 import argparse
 import os
 import pandas as pd
+import sys
 
 def process_imagefolder(root, save_dir="./data"):
     # turn a dir of root/set/image into csv
@@ -35,25 +36,7 @@ def process_imagenet_v2(imagenet_root, imagenet_v2_root, save_dir='./data'):
     return df
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="ImageNetV2")
-    parser.add_argument(
-        "--imagenet-root", type=str, help="root to imagenet dataset (e.g. /data/imagenet)"
-    )
-    parser.add_argument(
-        "--imagenet-v2-root", type=str, help="root to imagenetV2 dataset (e.g. /data/imagenetV2)"
-    )
-    parser.add_argument(
-        "--save_dir",
-        type=str,
-        default="./data",
-        help="directory to save the processed dataset",
-    )
-    args, unknown = parser.parse_known_args()
+    sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    from applications.data_paths import IMAGENET_PATH, IMAGENETV2_PATH, CSV_SAVE_DIR
 
-    # call function by add process_ to the dataset name
-    df = process_imagenet_v2(args.imagenet_root, args.imagenet_v2_root, args.save_dir)
-
-    required_cols = ["group_name", "path"]
-    assert all(
-        [r in list(df.columns) for r in required_cols]
-    ), f"Columns should be {required_cols} but got {list(df.columns)}"
+    df = process_imagenet_v2(IMAGENET_PATH, IMAGENETV2_PATH, CSV_SAVE_DIR)

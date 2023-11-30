@@ -1,4 +1,9 @@
+project: VisDiff-ResNet-Failure
+
 data:
   name: resnet_failure_imagenet
   group1: incorrect
   group2: correct
+
+evaluator:
+  method: NullEvaluator  # no evaluation since no GT

@@ -9,8 +9,7 @@ import os
 
 if __name__ == '__main__':
 
-    df = pd.read_csv('.data/imagenetV2.csv')
-
+    df = pd.read_csv('./data/imagenetV2.csv')
     # you can specify the revision tag if you don't want the timm dependency
     processor = DetrImageProcessor.from_pretrained("facebook/detr-resnet-50", revision="no_timm")
     model = DetrForObjectDetection.from_pretrained("facebook/detr-resnet-50", revision="no_timm")

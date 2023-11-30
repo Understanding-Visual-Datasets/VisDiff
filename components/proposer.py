@@ -138,7 +138,7 @@ class LLMProposerDiffusion(LLMProposer):
             assert item1['prompt'] == item2['prompt'], "Prompt mismatch"
             prompt_a = f"Group A: {item1['caption']}".replace("\n", " ").strip()
             prompt_b = f"Group B: {item2['caption']}".replace("\n", " ").strip()
-            captions += [f"\nPrompt: {prompt.replace('_', ' ')}\n{prompt_a}\n{prompt_b}"]
+            captions += [f"\nPrompt: {item1['prompt']}\n{prompt_a}\n{prompt_b}"]
         caption_concat = "\n".join(captions)
         prompt = self.prompt.format(text=caption_concat)
         output = get_llm_output(prompt, self.args["model"])

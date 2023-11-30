@@ -9,19 +9,16 @@ from diffusers import EulerDiscreteScheduler, StableDiffusionPipeline
 
 
 def main(args):
-    # if args.wandb_silent:
-    #     os.environ['WANDB_SILENT']="true"
-
+    if args.wandb_silent:
+        os.environ['WANDB_SILENT']="true"
     device = "cuda"
 
     print(f"Prompts: {args.prompts}")
+    latents = torch.load("applications/Diffusion/generation/latents.pt", map_location=device)
 
-    # assert args.num_images < 50, "num_images must be less than 50"
-    latents = torch.load("data/diffusion/latents.pt", map_location=device)
+    wandb.init(project="VisDiff-Diffusion", group='generated_images', name=args.prompts[0], config=vars(args))
 
-    wandb.init(project="Text-2-Image-ImDiff", config=vars(args))
-
-    with open("./data/negative_prompts.txt", "r") as f:
+    with open("applications/Diffusion/generation/negative_prompts.txt", "r") as f:
         negative_prompts = [line.replace("\n", "") for line in f.readlines()]
     negative_prompt = ", ".join(negative_prompts)
     print(f"Negative Prompt: {negative_prompt}")
@@ -40,10 +37,10 @@ def main(args):
         )
         pipe = pipe.to("cuda")
         if args.prompts == ["PartiPrompts"]:
-            parti_prompts = pd.read_csv("./data/parti-prompts.csv")
+            parti_prompts = pd.read_csv("applications/Diffusion/generation/parti-prompts.csv")
             prompts = parti_prompts["Prompt"].tolist()
         elif args.prompts == ["DiffusionDB"]:
-            with open("./data/diffusion/diffusiondb_big", "r") as f:
+            with open("applications/Diffusion/generation/diffusiondb.txt", "r") as f:
                 prompts = [line.replace("\n", "") for line in f.readlines()]
         else:
             prompts = args.prompts
@@ -72,13 +69,12 @@ def main(args):
                     os.makedirs(save_dir)
                 i.save(f"{save_dir}/{s}.png")
 
-            wandb.log({f"{model_id}-prompt": [wandb.Image(i) for i in images[:min([20, args.n])]]})
+            wandb.log({f"{model_id}-{prompt}": [wandb.Image(i) for i in images[:min([20, args.n])]]})
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Dataset Understanding")
     parser.add_argument("--prompts", type=str, nargs="+", help="prompts")
-    parser.add_argument("--dataset", type=str, default="Cub2011", help="dataset")
     parser.add_argument(
         "--save-dir",
         type=str,

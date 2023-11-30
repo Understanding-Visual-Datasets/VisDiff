@@ -6,6 +6,7 @@ import torchvision
 from PIL import Image
 from torchvision import transforms
 from tqdm import tqdm
+import sys
 
 def process_imagefolder(root, save_dir="./data"):
     # turn a dir of root/set/image into csv
@@ -73,30 +74,13 @@ def get_resnet_preds(df, batch_size=128):
     return preds
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="ImageNetV2")
-    parser.add_argument(
-        "--imagenet-root", type=str, help="root to imagenet dataset (e.g. /data/imagenet)"
-    )
-    parser.add_argument(
-        "--imagenet-v2-root", type=str, help="root to imagenetV2 dataset (e.g. /data/imagenetV2)"
-    )
-    parser.add_argument(
-        "--save_dir",
-        type=str,
-        default="./data",
-        help="directory to save the processed dataset",
-    )
-    args, unknown = parser.parse_known_args()
-
+    sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    from data_paths import IMAGENET_PATH, IMAGENETV2_PATH, CSV_SAVE_DIR
     # call function by add process_ to the dataset name
-    df = process_imagenet_v2(args.imagenet_root, args.imagenet_v2_root, args.save_dir)
+    df = process_imagenet_v2(IMAGENET_PATH, IMAGENETV2_PATH, CSV_SAVE_DIR)
     preds = get_resnet_preds(df)
-    print(len(preds), len(df))
+
     df = pd.concat([df, pd.DataFrame(preds)], axis=1)
-    print("no error yet")
+
     df['group_name'] = df['ensemble_preds'].apply(lambda x: 'correct' if x else 'incorrect')
-    df.to_csv(f'{args.save_dir}/imagenetV2_preds.csv', index=False)
-    required_cols = ["group_name", "path"]
-    assert all(
-        [r in list(df.columns) for r in required_cols]
-    ), f"Columns should be {required_cols} but got {list(df.columns)}"
+    df.to_csv(f'{CSV_SAVE_DIR}/imagenetV2_preds.csv', index=False)
