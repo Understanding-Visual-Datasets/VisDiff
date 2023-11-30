@@ -5,9 +5,13 @@ from typing import List
 import lmdb
 import numpy as np
 import requests
+import os
 
 from serve.global_vars import CLIP_CACHE_FILE, CLIP_URL
 from serve.utils_general import get_from_cache, save_to_cache
+
+if not os.path.exists(CLIP_CACHE_FILE):
+    os.makedirs(CLIP_CACHE_FILE)
 
 clip_cache = lmdb.open(CLIP_CACHE_FILE, map_size=int(1e11))
 

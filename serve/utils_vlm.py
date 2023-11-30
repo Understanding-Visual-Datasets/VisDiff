@@ -8,9 +8,13 @@ from typing import Dict, List
 
 import lmdb
 import requests
+import os
 
 from serve.global_vars import BLIP_FEATURE_URL, BLIP_URL, LLAVA_URL, VLM_CACHE_FILE
 from serve.utils_general import get_from_cache, save_to_cache
+
+if not os.path.exists(VLM_CACHE_FILE):
+    os.makedirs(VLM_CACHE_FILE)
 
 vlm_cache = lmdb.open(VLM_CACHE_FILE, map_size=int(1e11))
 

@@ -34,13 +34,14 @@ def load_data(args: Dict) -> Tuple[List[Dict], List[Dict], List[str]]:
     data_args = args["data"]
 
     df = pd.read_csv(f"{data_args['root']}/{data_args['name']}.csv")
+    if data_args['subset']:
+        old_len = len(df)
+        df = df[df['subset'] == data_args['subset']]
+        print(f"Taking {data_args['subset']} subset (dataset size reduced from {old_len} to {len(df)})")
+
     dataset1 = df[df["group_name"] == data_args["group1"]].to_dict("records")
     dataset2 = df[df["group_name"] == data_args["group2"]].to_dict("records")
     group_names = [data_args["group1"], data_args["group2"]]
-
-    if data_args["subset"]:
-        dataset1 = dataset1[dataset1["subset"] == data_args["subset"]]
-        dataset2 = dataset2[dataset2["subset"] == data_args["subset"]]
 
     if data_args["purity"] < 1:
         logging.warning(f"Purity is set to {data_args['purity']}. Swapping groups.")
@@ -126,7 +127,7 @@ def main(config):
 
     logging.info("Loading data...")
     dataset1, dataset2, group_names = load_data(args)
-    # print(dataset1, dataset2, group_names)
+    print(dataset1, dataset2, group_names)
 
     logging.info("Proposing hypotheses...")
     hypotheses = propose(args, dataset1, dataset2)
@@ -136,8 +137,9 @@ def main(config):
     ranked_hypotheses = rank(args, hypotheses, dataset1, dataset2, group_names)
     # print(ranked_hypotheses)
 
-    logging.info("Evaluating hypotheses...")
-    metrics = evaluate(args, ranked_hypotheses, group_names)
+    if args["evaluator"]["method"] != "NullEvaluator":
+        logging.info("Evaluating hypotheses...")
+        metrics = evaluate(args, ranked_hypotheses, group_names)
     # print(metrics)
 
 
