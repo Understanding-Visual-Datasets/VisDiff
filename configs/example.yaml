@@ -1,4 +1,4 @@
 data:
-  name: VisDiffBench
-  group1: "Dogs playing in a park"
-  group2: "Cats playing in a park"
+  name: Examples
+  group1: "People practicing yoga in a mountainous setting"
+  group2: "People meditating in a mountainous setting"

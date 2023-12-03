@@ -1,0 +1,11 @@
+click
+pandas
+omegaconf
+tqdm
+wandb
+lmdb
+openai==0.28
+Pillow
+seaborn
+scipy
+scikit-learn
