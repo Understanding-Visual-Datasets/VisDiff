@@ -8,18 +8,8 @@ from tqdm import tqdm
 
 import wandb
 from components.evaluator import GPTEvaluator, NullEvaluator
-from components.proposer import (
-    LLMProposer,
-    TFIDFProposer,
-    VLMFeatureProposer,
-    VLMProposer,
-)
-from components.validator import (
-    CLIPValidator,
-    LLMValidator,
-    NullValidator,
-    VLMValidator,
-)
+from components.proposer import LLMProposer, VLMFeatureProposer, VLMProposer
+from components.ranker import CLIPRanker, LLMRanker, NullRanker, VLMRanker
 
 logging.basicConfig(level=logging.INFO)
 
@@ -47,10 +37,10 @@ def load_data(args: Dict) -> Tuple[List[Dict], List[Dict], List[str]]:
     dataset1 = df[df["group_name"] == data_args["group1"]].to_dict("records")
     dataset2 = df[df["group_name"] == data_args["group2"]].to_dict("records")
     group_names = [data_args["group1"], data_args["group2"]]
-    
-    if data_args['subset']:
-        dataset1 = dataset1[dataset1['subset'] == data_args['subset']]
-        dataset2 = dataset2[dataset2['subset'] == data_args['subset']]
+
+    if data_args["subset"]:
+        dataset1 = dataset1[dataset1["subset"] == data_args["subset"]]
+        dataset2 = dataset2[dataset2["subset"] == data_args["subset"]]
 
     if data_args["purity"] < 1:
         logging.warning(f"Purity is set to {data_args['purity']}. Swapping groups.")
@@ -78,24 +68,24 @@ def propose(args: Dict, dataset1: List[Dict], dataset2: List[Dict]) -> List[str]
     return hypotheses
 
 
-def validate(
+def rank(
     args: Dict,
     hypotheses: List[str],
     dataset1: List[Dict],
     dataset2: List[Dict],
     group_names: List[str],
 ) -> List[str]:
-    validator_args = args["validator"]
-    validator_args["seed"] = args["seed"]
+    ranker_args = args["ranker"]
+    ranker_args["seed"] = args["seed"]
 
-    validator = eval(validator_args["method"])(validator_args)
+    ranker = eval(ranker_args["method"])(ranker_args)
 
-    scored_hypotheses = validator.rerank_hypotheses(hypotheses, dataset1, dataset2)
+    scored_hypotheses = ranker.rerank_hypotheses(hypotheses, dataset1, dataset2)
     if args["wandb"]:
         table_hypotheses = wandb.Table(dataframe=pd.DataFrame(scored_hypotheses))
         wandb.log({"scored hypotheses": table_hypotheses})
 
-    scored_groundtruth = validator.rerank_hypotheses(
+    scored_groundtruth = ranker.rerank_hypotheses(
         group_names,
         dataset1,
         dataset2,
@@ -142,8 +132,8 @@ def main(config):
     hypotheses = propose(args, dataset1, dataset2)
     # print(hypotheses)
 
-    logging.info("Validating hypotheses...")
-    ranked_hypotheses = validate(args, hypotheses, dataset1, dataset2, group_names)
+    logging.info("Ranking hypotheses...")
+    ranked_hypotheses = rank(args, hypotheses, dataset1, dataset2, group_names)
     # print(ranked_hypotheses)
 
     logging.info("Evaluating hypotheses...")

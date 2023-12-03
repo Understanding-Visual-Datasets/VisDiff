@@ -8,18 +8,11 @@ data:
   group1: "A"  # name of group 1
   group2: "B"  # name of group 2
   purity: 1.0  # how much of each concept is in each group (1.0 means perfect seperation, 0.5 means perfect mix)
-  subset: False # if you want to use a subset of the dataset, set this to name of the desired subset value
+  subset: False  # if you want to use a subset of the dataset, set this to name of the desired subset value
 
 captioner:
   model: blip  # model used in method
-  prompt: "Describe this image in detail."  # prompt to use # "describe this image in detail." (for llava cache)
-
-# proposer:  # TF-IDF Proposer
-#   method: TFIDFProposer  # how to propose hypotheses
-#   num_rounds: 1  # number of rounds to propose
-#   num_samples: 20  # number of samples per group to use
-#   sampling_method: random  # how to sample
-#   num_hypotheses: 10  # number of hypotheses to generate per round
+  prompt: "Describe this image in detail."  # prompt to use
 
 # proposer:  # VLM Proposer
 #   method: VLMProposer  # how to propose hypotheses
@@ -46,22 +39,22 @@ proposer:  # LLM Proposer
 #   sampling_method: random  # how to sample
 #   num_hypotheses: 10  # number of hypotheses to generate per round
 
-validator:  # CLIP Validator
-  method: CLIPValidator  # how to validate and rank hypotheses
-  clip_model: ViT-bigG-14  # clip model to use for validation
-  clip_dataset: laion2b_s39b_b160k  # clip dataset to use for validation
-  max_num_samples: 5000  # maximum number of samples to use for validation
+ranker:  # CLIP Ranker
+  method: CLIPRanker  # how to rank hypotheses
+  clip_model: ViT-bigG-14  # clip model to use
+  clip_dataset: laion2b_s39b_b160k  # clip dataset to use
+  max_num_samples: 5000  # maximum number of samples to use
   classify_threshold: 0.3  # threshold for clip classification
 
-# validator:  # LLM Validator
-#   method: LLMValidator  # how to validate and rank hypotheses
-#   captioner_model: llava  # captioner to use for validation
+# ranker:  # LLM Ranker
+#   method: LLMRanker  # how to rank hypotheses
+#   captioner_model: llava  # captioner to use
 #   captioner_prompt: "describe this image in detail."
 #   model: vicuna  # model used in method
 #   classify_threshold: 0.5  # threshold for clip classification
 
-# validator:  # VLM Validator
-#   method: VLMValidator  # how to validate and rank hypotheses
+# ranker:  # VLM Ranker
+#   method: VLMRanker  # how to rank hypotheses
 #   model: llava  # model used in method
 #   classify_threshold: 0.5  # threshold for clip classification
 

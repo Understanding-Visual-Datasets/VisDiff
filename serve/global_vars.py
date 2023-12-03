@@ -1,18 +1,12 @@
 # LLM API
-OPENAI_KEY = "sk-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 VICUNA_URL = "http://localhost:8000/v1"
 LLM_CACHE_FILE = "cache/cache_llm"
 
-# VLM SERVER
-LLAVA_CODE_PATH = "/home/visdiff/LLaVA"
-COGVLM_CODE_PATH = "/home/visdiff/CogVLM/"
-COGVLM_CHECKPOINT_PATH = "/home/visdiff/cogvlm-chat"
-
 # VLM API
+LLAVA_CODE_PATH = "./LLaVA"
 BLIP_URL = "http://localhost:8082"
-COGVLM_URL = "http://localhost:8083"
 LLAVA_URL = "http://localhost:8084"
-BLIP_FEATURE_URL = "http://localhost:8085/"
+BLIP_FEATURE_URL = "http://localhost:8086"
 VLM_CACHE_FILE = "cache/cache_vlm"
 
 # CLIP API

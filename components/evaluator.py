@@ -12,7 +12,7 @@ class GPTEvaluator:
     Ask GPT if the hypothesis is true or false.
     """
 
-    validator_prompt = """I am a machine learning reseracher summarizing differences in groups of images. The goal is to find a concept that is more true for Group A than Group B.
+    prompt = """I am a machine learning reseracher summarizing differences in groups of images. The goal is to find a concept that is more true for Group A than Group B.
 
 Given a description of Group A and Group B, output whether a given prediction aligns with the description of Group A. Answer with a 2 (fully aligned), 1 (somewhat aligned), or 0 (not aligned). a score of 1 should be given if the prediction is more true for A than B, but is a superset or a subset of the most correct difference.
 
@@ -35,9 +35,7 @@ Again, output either a 2, 1, or 0. Response:"""
         scores = []
         evaluated_hypotheses = []
         for hypothesis in tqdm(hypotheses[: self.args["n_hypotheses"]]):
-            prompt = self.validator_prompt.format(
-                hypothesis=hypothesis, gt_a=gt_a, gt_b=gt_b
-            )
+            prompt = self.prompt.format(hypothesis=hypothesis, gt_a=gt_a, gt_b=gt_b)
             answer = get_llm_output(prompt, self.args["model"])
             try:
                 scores.append(int(answer))
