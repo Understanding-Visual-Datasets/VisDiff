@@ -9,13 +9,7 @@ from typing import Dict, List
 import lmdb
 import requests
 
-from serve.global_vars import (
-    BLIP_FEATURE_URL,
-    BLIP_URL,
-    COGVLM_URL,
-    LLAVA_URL,
-    VLM_CACHE_FILE,
-)
+from serve.global_vars import BLIP_FEATURE_URL, BLIP_URL, LLAVA_URL, VLM_CACHE_FILE
 from serve.utils_general import get_from_cache, save_to_cache
 
 vlm_cache = lmdb.open(VLM_CACHE_FILE, map_size=int(1e11))
@@ -58,7 +52,6 @@ def get_vlm_output(image: str, prompt: str, model: str) -> str:
     text_data = {"text": prompt}
     url = {
         "blip": BLIP_URL,
-        "cogvlm": COGVLM_URL,
         "llava": LLAVA_URL,
     }[model]
 
@@ -83,7 +76,15 @@ def vqa(image: str, question: str, model: str) -> str:
 
 
 def test_get_vlm_output():
-    image = "../_deprecated/initial_attempt/532_v1/ILSVRC2012_val_00000241.JPEG"
+    image = "data/teaser.png"
+    model = "blip"
+
+    caption = captioning(image, model)
+    print(f"{caption=}")
+    question = "Is there a table in the image?"
+    answer = vqa(image, question, model)
+    print(f"{answer=}")
+
     model = "llava"
 
     caption = captioning(image, model)
@@ -107,4 +108,4 @@ def test_get_vlm_output_parallel():
 
 if __name__ == "__main__":
     test_get_vlm_output()
-    test_get_vlm_output_parallel()
+    # test_get_vlm_output_parallel()

@@ -71,4 +71,4 @@ def interact_with_blip():
 
 if __name__ == "__main__":
     logging.info("Server is running!")
-    app.run(host="0.0.0.0", port=8085, debug=False)
+    app.run(host="0.0.0.0", port=8086, debug=False)

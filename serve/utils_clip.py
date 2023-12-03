@@ -43,11 +43,11 @@ def get_embeddings(inputs: List[str], model: str, modality: str) -> np.ndarray:
 
 if __name__ == "__main__":
     embeddings = get_embeddings(
-        ["../_deprecated/initial_attempt/532_v1/ILSVRC2012_val_00000241.JPEG"],
+        ["data/teaser.png"],
         "ViT-bigG-14",
         "image",
     )
     print(embeddings)
 
-    embeddings = get_embeddings(["shit", "haha", "hello world"], "ViT-bigG-14", "text")
+    embeddings = get_embeddings(["haha", "hello world"], "ViT-bigG-14", "text")
     print(embeddings)
