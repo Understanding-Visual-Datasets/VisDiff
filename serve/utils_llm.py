@@ -1,11 +1,11 @@
 import json
 import logging
+import os
 import threading
 from typing import List
 
 import lmdb
 import openai
-import os
 
 from serve.global_vars import LLM_CACHE_FILE, VICUNA_URL
 from serve.utils_general import get_from_cache, save_to_cache

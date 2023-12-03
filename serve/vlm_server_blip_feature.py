@@ -52,7 +52,10 @@ def get_embed_caption_blip(
     mean_embeds2 = torch.mean(torch.stack(all_embeds2), dim=0)
 
     dif_embed = mean_embeds1 - mean_embeds2
-    dif_result = [model.generate({"image": ex_image}, image_embeds=dif_embed)[0] for i in range(10)]
+    dif_result = [
+        model.generate({"image": ex_image}, image_embeds=dif_embed)[0]
+        for i in range(10)
+    ]
 
     return dif_result
 

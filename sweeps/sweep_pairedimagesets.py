@@ -1,7 +1,9 @@
 import json
 import os
 import random
+
 import click
+
 
 @click.command()
 @click.option("--seed", default=0, type=int)
@@ -10,27 +12,21 @@ def main(purity: float, seed: int):
     random.seed(0)
     root = "data/VisDiffBench"
     easy = [json.loads(line) for line in open(f"{root}/easy.jsonl")]
-    medium = [json.loads(line) for line in open(f"{root}/new_medium.jsonl")]
-    hard = [json.loads(line) for line in open(f"{root}/new_hard.jsonl")]
+    medium = [json.loads(line) for line in open(f"{root}/medium.jsonl")]
+    hard = [json.loads(line) for line in open(f"{root}/hard.jsonl")]
     data = easy + medium + hard
-    sampled_indices = range(100, 150)
-    # range(len(data))  # sorted(random.sample(range(len(data)), 30))
-    print(sampled_indices)
 
-    for idx in sampled_indices:
+    for idx in range(0, 150):
         item = data[idx]
         cfg = f"""
-project: VisDiff-BLIP-GPT4-CLIP-GPT4-NewSplit-FixQuota-Purity{purity}-Seed{seed}
+project: PairedImageSets
 seed: {seed}  # random seed
 
 data:
-  name: VisDiffBench
+  name: PairedImageSets
   group1: "{item['set1']}"
   group2: "{item['set2']}"
   purity: {purity}
-
-evaluator:
-  n_hypotheses: 5  # number of hypotheses to evaluate
 """
 
         difficulty = (
@@ -40,7 +36,7 @@ evaluator:
             if idx < len(easy) + len(medium)
             else "hard"
         )
-        cfg_dir = f"configs/sweep_visdiffbench_newsplit_purity{purity}_seed{seed}"
+        cfg_dir = f"configs/sweep_visdiffbench_purity{purity}_seed{seed}"
         if not os.path.exists(cfg_dir):
             os.makedirs(cfg_dir)
         cfg_file = f"{cfg_dir}/{idx}_{difficulty}.yaml"

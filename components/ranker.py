@@ -111,7 +111,7 @@ def t_test(d_A, d_B):
         return False, p_value
 
 
-class Validator:
+class Ranker:
     def __init__(self, args: Dict):
         self.args = args
 
@@ -159,7 +159,7 @@ class Validator:
         return metrics
 
 
-class CLIPValidator(Validator):
+class CLIPRanker(Ranker):
     def __init__(self, args: Dict):
         super().__init__(args)
 
@@ -173,7 +173,7 @@ class CLIPValidator(Validator):
         return scores
 
 
-class VLMValidator(Validator):
+class VLMRanker(Ranker):
     def __init__(self, args: Dict):
         super().__init__(args)
 
@@ -194,7 +194,7 @@ class VLMValidator(Validator):
         return scores
 
 
-class LLMValidator(Validator):
+class LLMRanker(Ranker):
     def __init__(self, args: Dict):
         super().__init__(args)
 
@@ -252,7 +252,7 @@ OUTPUT:"""
         return scores
 
 
-class NullValidator(Validator):
+class NullRanker(Ranker):
     def __init__(self, args: Dict):
         super().__init__(args)
 
@@ -260,7 +260,7 @@ class NullValidator(Validator):
         return [0.0] * len(dataset)
 
 
-def test_validators():
+def test_rankers():
     args = {
         "clip_model": "ViT-bigG-14",
         "clip_dataset": "laion2b_s39b_b160k",
@@ -278,18 +278,18 @@ def test_validators():
 
     hypotheses = ["A cat", "Food"]
 
-    validator_clip = CLIPValidator(args)
-    scores = validator_clip.rerank_hypotheses(hypotheses, dataset1, dataset2)
+    ranker_clip = CLIPRanker(args)
+    scores = ranker_clip.rerank_hypotheses(hypotheses, dataset1, dataset2)
     print(scores)
 
-    validator_vlm = VLMValidator(args)
-    scores = validator_vlm.rerank_hypotheses(hypotheses, dataset1, dataset2)
+    ranker_vlm = VLMRanker(args)
+    scores = ranker_vlm.rerank_hypotheses(hypotheses, dataset1, dataset2)
     print(scores)
 
-    validator_llm = LLMValidator(args)
-    scores = validator_llm.rerank_hypotheses(hypotheses, dataset1, dataset2)
+    ranker_llm = LLMRanker(args)
+    scores = ranker_llm.rerank_hypotheses(hypotheses, dataset1, dataset2)
     print(scores)
 
 
 if __name__ == "__main__":
-    test_validators()
+    test_rankers()

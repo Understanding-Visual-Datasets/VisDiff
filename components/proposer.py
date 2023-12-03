@@ -74,6 +74,7 @@ class Proposer:
                 self.args["captioner"]["model"],
             )
 
+
 class LLMProposer(Proposer):
     def __init__(self, args: Dict):
         super().__init__(args)
