@@ -10,7 +10,6 @@ import wandb
 from components.evaluator import GPTEvaluator, NullEvaluator
 from components.proposer import (
     LLMProposer,
-    TFIDFProposer,
     VLMFeatureProposer,
     VLMProposer,
 )

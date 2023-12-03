@@ -28,7 +28,6 @@ def get_embeddings(inputs: List[str], model: str, modality: str) -> np.ndarray:
             response = requests.post(
                 CLIP_URL, data={modality: json.dumps(uncached_inputs)}
             ).json()
-            print(type(response["embeddings"]), len(response["embeddings"]))
             for inp, embedding in zip(uncached_inputs, response["embeddings"]):
                 input_to_embeddings[inp] = embedding
                 key = json.dumps([inp, model])

@@ -14,13 +14,6 @@ captioner:
   model: blip  # model used in method
   prompt: "Describe this image in detail."  # prompt to use # "describe this image in detail." (for llava cache)
 
-# proposer:  # TF-IDF Proposer
-#   method: TFIDFProposer  # how to propose hypotheses
-#   num_rounds: 1  # number of rounds to propose
-#   num_samples: 20  # number of samples per group to use
-#   sampling_method: random  # how to sample
-#   num_hypotheses: 10  # number of hypotheses to generate per round
-
 # proposer:  # VLM Proposer
 #   method: VLMProposer  # how to propose hypotheses
 #   model: llava

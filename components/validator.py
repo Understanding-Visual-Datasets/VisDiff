@@ -1,17 +1,10 @@
-import argparse
 import random
-from dataclasses import dataclass
-from typing import Dict, List, Tuple
+from typing import Dict, List
 
-import clip
 import numpy as np
-import open_clip
 import pandas as pd
 import seaborn as sns
-import torch
-import torch.nn.functional as F
 from matplotlib import pyplot as plt
-from PIL import Image
 from scipy.stats import ttest_ind
 from sklearn.metrics import roc_auc_score
 from tqdm import tqdm, trange

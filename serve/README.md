@@ -21,13 +21,6 @@
 
 1. Pip install environments: `pip install vllm`
 2. Configure global variables in `global_vars.py`
-3. Run `python -m vllm.entrypoints.openai.api_server --model lmsys/vicuna-7b-v1.5`
-4. Run `utils_llm.py` to test the LLM.
-
-## Code Check-in Standards
-
-1. Git create a new branch
-2. Run the following before commit:
-  - `pip install isort black`
-  - `isort *.py; black *.py`
-3. Create a pull request on Github
+3. Set up OpenAI API key: `export OPENAI_API_KEY='[your key]'`
+4. Run `python -m vllm.entrypoints.openai.api_server --model lmsys/vicuna-7b-v1.5`
+5. Run `utils_llm.py` to test the LLM.

@@ -1,21 +1,4 @@
-*.jsonl
-*.json
-*.mdb
-*.lock
-*.txt
-*.png
-*.csv
-cache/
-
-# ** For Daniel's Machine
-clip_checkpoints/
-data/
-embeddings/
-captions/
-summaries/
-datasets/
-helpers/load_dataset.py
-differences.py
+lock.mdb
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

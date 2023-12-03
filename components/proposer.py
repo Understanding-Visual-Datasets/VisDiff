@@ -6,7 +6,6 @@ from typing import Dict, List, Tuple
 
 import pandas as pd
 from PIL import Image
-from sklearn.feature_extraction.text import TfidfVectorizer
 
 import components.prompts as prompts
 import wandb
@@ -75,29 +74,6 @@ class Proposer:
                 self.args["captioner"]["model"],
             )
 
-
-class TFIDFProposer(Proposer):
-    def __init__(self, args: Dict):
-        super().__init__(args)
-
-    def get_hypotheses(
-        self, sampled_dataset1: List[Dict], sampled_dataset2: List[Dict]
-    ) -> Tuple[List[str], Dict]:
-        self.captioning(sampled_dataset1)
-        self.captioning(sampled_dataset2)
-        all_texts = [item["caption"] for item in sampled_dataset1 + sampled_dataset2]
-        vectorizer = TfidfVectorizer(stop_words="english", max_df=0.85)
-        tfidf_matrix = vectorizer.fit_transform(all_texts).toarray()
-        group0_avg_tfidf = tfidf_matrix[: len(sampled_dataset1)].mean(axis=0)
-        group1_avg_tfidf = tfidf_matrix[len(sampled_dataset1) :].mean(axis=0)
-        diff = group0_avg_tfidf - group1_avg_tfidf
-        feature_names = vectorizer.get_feature_names_out()
-        N = self.args["num_hypotheses"]
-        top_concepts = [feature_names[i] for i in diff.argsort()[-N:][::-1]]
-        logs = {"output": top_concepts}
-        return top_concepts, logs
-
-
 class LLMProposer(Proposer):
     def __init__(self, args: Dict):
         super().__init__(args)
@@ -165,10 +141,6 @@ class VLMFeatureProposer(Proposer):
         return diff_caption, logs
 
 
-class LLMSingleSetProposer(Proposer):
-    pass  # just set sampled_dataset2 = [] for TFIDFProposer and TFIDFProposer will work
-
-
 def test_proposers():
     dataset = pd.read_csv("data/diffusion_plates.csv")
     dataset = dataset.to_dict("records")
@@ -189,10 +161,6 @@ def test_proposers():
     }
 
     proposer = LLMProposer(args)
-    hypotheses, _, _ = proposer.propose(dataset1, dataset2)
-    print(hypotheses)
-
-    proposer = TFIDFProposer(args)
     hypotheses, _, _ = proposer.propose(dataset1, dataset2)
     print(hypotheses)
 

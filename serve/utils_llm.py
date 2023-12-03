@@ -5,15 +5,16 @@ from typing import List
 
 import lmdb
 import openai
+import os
 
-from serve.global_vars import LLM_CACHE_FILE, OPENAI_KEY, VICUNA_URL
+from serve.global_vars import LLM_CACHE_FILE, VICUNA_URL
 from serve.utils_general import get_from_cache, save_to_cache
 
 logging.basicConfig(level=logging.INFO)
 
 
 llm_cache = lmdb.open(LLM_CACHE_FILE, map_size=int(1e11))
-openai.api_key = OPENAI_KEY
+openai.api_key = os.environ["OPENAI_API_KEY"]
 
 
 def get_llm_output(prompt: str, model: str) -> str:
