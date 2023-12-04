@@ -2,10 +2,9 @@ import random
 from typing import Dict, List
 
 import pandas as pd
+from model import ModelFactory
 from PIL import Image
 from tqdm import tqdm
-
-from model import ModelFactory
 
 
 def get_model_outputs():

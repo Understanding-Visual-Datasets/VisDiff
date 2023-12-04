@@ -1,4 +1,16 @@
+project: VisDiff-StableDiffusion
+
 data:
   name: parti
   group1: stabilityai/stable-diffusion-2-1
   group2: CompVis/stable-diffusion-v1-4
+
+proposer:  # LLM Proposer
+  method: LLMProposerDiffusion  # how to propose hypotheses
+  model: gpt-4  # model used in method
+  num_rounds: 3  # number of rounds to propose
+  num_samples: 20  # number of samples per group to use
+  prompt: DIFFUSION_LLM_PROMPT  # prompt to use
+
+evaluator:
+  method: NullEvaluator  # no evaluation since no GT

@@ -8,10 +8,13 @@ from tqdm import tqdm
 
 import wandb
 from components.evaluator import GPTEvaluator, NullEvaluator
-from components.proposer import LLMProposer, VLMFeatureProposer, VLMProposer
+from components.proposer import (
+    LLMProposer,
+    LLMProposerDiffusion,
+    VLMFeatureProposer,
+    VLMProposer,
+)
 from components.ranker import CLIPRanker, LLMRanker, NullRanker, VLMRanker
-
-logging.basicConfig(level=logging.INFO)
 
 
 def load_config(config: str) -> Dict:
@@ -34,13 +37,17 @@ def load_data(args: Dict) -> Tuple[List[Dict], List[Dict], List[str]]:
     data_args = args["data"]
 
     df = pd.read_csv(f"{data_args['root']}/{data_args['name']}.csv")
+
+    if data_args["subset"]:
+        old_len = len(df)
+        df = df[df["subset"] == data_args["subset"]]
+        print(
+            f"Taking {data_args['subset']} subset (dataset size reduced from {old_len} to {len(df)})"
+        )
+
     dataset1 = df[df["group_name"] == data_args["group1"]].to_dict("records")
     dataset2 = df[df["group_name"] == data_args["group2"]].to_dict("records")
     group_names = [data_args["group1"], data_args["group2"]]
-
-    if data_args["subset"]:
-        dataset1 = dataset1[dataset1["subset"] == data_args["subset"]]
-        dataset2 = dataset2[dataset2["subset"] == data_args["subset"]]
 
     if data_args["purity"] < 1:
         logging.warning(f"Purity is set to {data_args['purity']}. Swapping groups.")
@@ -59,12 +66,18 @@ def propose(args: Dict, dataset1: List[Dict], dataset2: List[Dict]) -> List[str]
     proposer = eval(proposer_args["method"])(proposer_args)
     hypotheses, logs, images = proposer.propose(dataset1, dataset2)
     if args["wandb"]:
-        wandb.log(
-            {
-                "logs": wandb.Table(dataframe=pd.DataFrame(logs)),
-                "images": wandb.Table(dataframe=pd.DataFrame(images)),
-            }
-        )
+        wandb.log({"logs": wandb.Table(dataframe=pd.DataFrame(logs))})
+        for i in range(len(images)):
+            wandb.log(
+                {
+                    f"group 1 images ({dataset1[0]['group_name']})": images[i][
+                        "images_group_1"
+                    ],
+                    f"group 2 images ({dataset2[0]['group_name']})": images[i][
+                        "images_group_2"
+                    ],
+                }
+            )
     return hypotheses
 
 
@@ -84,6 +97,11 @@ def rank(
     if args["wandb"]:
         table_hypotheses = wandb.Table(dataframe=pd.DataFrame(scored_hypotheses))
         wandb.log({"scored hypotheses": table_hypotheses})
+        for i in range(5):
+            wandb.summary[f"top_{i + 1}_difference"] = scored_hypotheses[i][
+                "hypothesis"
+            ].replace('"', "")
+            wandb.summary[f"top_{i + 1}_score"] = scored_hypotheses[i]["auroc"]
 
     scored_groundtruth = ranker.rerank_hypotheses(
         group_names,
@@ -108,7 +126,7 @@ def evaluate(args: Dict, ranked_hypotheses: List[str], group_names: List[str]) -
         group_names[1],
     )
 
-    if args["wandb"]:
+    if args["wandb"] and evaluator_args["method"] != "NullEvaluator":
         table_evaluated_hypotheses = wandb.Table(
             dataframe=pd.DataFrame(evaluated_hypotheses)
         )

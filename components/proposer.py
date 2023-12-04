@@ -101,6 +101,60 @@ class LLMProposer(Proposer):
         return hypotheses, logs
 
 
+class LLMProposerDiffusion(LLMProposer):
+    def propose(
+        self, dataset1: List[Dict], dataset2: List[Dict]
+    ) -> Tuple[List[str], List[Dict], List[Dict]]:
+        """
+        Given two datasets, return a list of hypotheses
+        """
+        assert "prompt" in dataset1[0].keys(), "'prompt' column not in dataset"
+        all_hypotheses = []
+        all_logs = []
+        all_images = []
+        random.seed(self.args["seed"])
+        for i in range(self.args["num_rounds"]):
+            sampled_dataset1 = self.sample(dataset1, self.args["num_samples"])
+            sampled_prompts = [
+                item["prompt"] for item in sampled_dataset1
+            ]  # BIG CHANGE HERE
+            sampled_dataset2 = [
+                item for item in dataset2 if item["prompt"] in sampled_prompts
+            ]  # BIG CHANGE HERE
+            sampled_dataset1 = sorted(
+                sampled_dataset1, key=lambda k: k["prompt"]
+            )  # BIG CHANGE HERE
+            sampled_dataset2 = sorted(
+                sampled_dataset2, key=lambda k: k["prompt"]
+            )  # BIG CHANGE HERE
+            hypotheses, logs = self.get_hypotheses(sampled_dataset1, sampled_dataset2)
+            images = self.visualize(sampled_dataset1, sampled_dataset2)
+            all_hypotheses += hypotheses
+            all_logs.append(logs)
+            all_images.append(images)
+        return all_hypotheses, all_logs, all_images
+
+    def get_hypotheses(
+        self, sampled_dataset1: List[Dict], sampled_dataset2: List[Dict]
+    ) -> Tuple[List[str], Dict]:
+        # make sure 'prompt' is in dataset
+        assert "prompt" in sampled_dataset1[0].keys(), "'prompt' column not in dataset"
+        self.captioning(sampled_dataset1)
+        self.captioning(sampled_dataset2)
+        captions = []
+        for item1, item2 in zip(sampled_dataset1, sampled_dataset2):
+            assert item1["prompt"] == item2["prompt"], "Prompt mismatch"
+            prompt_a = f"Group A: {item1['caption']}".replace("\n", " ").strip()
+            prompt_b = f"Group B: {item2['caption']}".replace("\n", " ").strip()
+            captions += [f"\nPrompt: {item1['prompt']}\n{prompt_a}\n{prompt_b}"]
+        caption_concat = "\n".join(captions)
+        prompt = self.prompt.format(text=caption_concat)
+        output = get_llm_output(prompt, self.args["model"])
+        hypotheses = [line.replace("* ", "") for line in output.splitlines()]
+        logs = {"prompt": prompt, "output": output}
+        return hypotheses, logs
+
+
 class VLMProposer(Proposer):
     """
     Concatenate images and ask VLM to find differences
