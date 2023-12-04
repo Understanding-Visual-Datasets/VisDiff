@@ -4,19 +4,27 @@ import os
 
 import pandas as pd
 import torch
-import wandb
 from diffusers import EulerDiscreteScheduler, StableDiffusionPipeline
+
+import wandb
 
 
 def main(args):
     if args.wandb_silent:
-        os.environ['WANDB_SILENT']="true"
+        os.environ["WANDB_SILENT"] = "true"
     device = "cuda"
 
     print(f"Prompts: {args.prompts}")
-    latents = torch.load("applications/Diffusion/generation/latents.pt", map_location=device)
+    latents = torch.load(
+        "applications/Diffusion/generation/latents.pt", map_location=device
+    )
 
-    wandb.init(project="VisDiff-Diffusion", group='generated_images', name=args.prompts[0], config=vars(args))
+    wandb.init(
+        project="VisDiff-Diffusion",
+        group="generated_images",
+        name=args.prompts[0],
+        config=vars(args),
+    )
 
     with open("applications/Diffusion/generation/negative_prompts.txt", "r") as f:
         negative_prompts = [line.replace("\n", "") for line in f.readlines()]
@@ -37,7 +45,9 @@ def main(args):
         )
         pipe = pipe.to("cuda")
         if args.prompts == ["PartiPrompts"]:
-            parti_prompts = pd.read_csv("applications/Diffusion/generation/parti-prompts.csv")
+            parti_prompts = pd.read_csv(
+                "applications/Diffusion/generation/parti-prompts.csv"
+            )
             prompts = parti_prompts["Prompt"].tolist()
         elif args.prompts == ["DiffusionDB"]:
             with open("applications/Diffusion/generation/diffusiondb.txt", "r") as f:
@@ -69,7 +79,13 @@ def main(args):
                     os.makedirs(save_dir)
                 i.save(f"{save_dir}/{s}.png")
 
-            wandb.log({f"{model_id}-{prompt}": [wandb.Image(i) for i in images[:min([20, args.n])]]})
+            wandb.log(
+                {
+                    f"{model_id}-{prompt}": [
+                        wandb.Image(i) for i in images[: min([20, args.n])]
+                    ]
+                }
+            )
 
 
 if __name__ == "__main__":
