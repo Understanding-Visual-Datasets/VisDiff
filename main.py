@@ -8,7 +8,12 @@ from tqdm import tqdm
 
 import wandb
 from components.evaluator import GPTEvaluator, NullEvaluator
-from components.proposer import LLMProposer, LLMProposerDiffusion, VLMFeatureProposer, VLMProposer
+from components.proposer import (
+    LLMProposer,
+    LLMProposerDiffusion,
+    VLMFeatureProposer,
+    VLMProposer,
+)
 from components.ranker import CLIPRanker, LLMRanker, NullRanker, VLMRanker
 
 
@@ -32,10 +37,13 @@ def load_data(args: Dict) -> Tuple[List[Dict], List[Dict], List[str]]:
     data_args = args["data"]
 
     df = pd.read_csv(f"{data_args['root']}/{data_args['name']}.csv")
-    if data_args['subset']:
+
+    if data_args["subset"]:
         old_len = len(df)
-        df = df[df['subset'] == data_args['subset']]
-        print(f"Taking {data_args['subset']} subset (dataset size reduced from {old_len} to {len(df)})")
+        df = df[df["subset"] == data_args["subset"]]
+        print(
+            f"Taking {data_args['subset']} subset (dataset size reduced from {old_len} to {len(df)})"
+        )
 
     dataset1 = df[df["group_name"] == data_args["group1"]].to_dict("records")
     dataset2 = df[df["group_name"] == data_args["group2"]].to_dict("records")
@@ -58,19 +66,20 @@ def propose(args: Dict, dataset1: List[Dict], dataset2: List[Dict]) -> List[str]
     proposer = eval(proposer_args["method"])(proposer_args)
     hypotheses, logs, images = proposer.propose(dataset1, dataset2)
     if args["wandb"]:
-        wandb.log(
-            {
-                "logs": wandb.Table(dataframe=pd.DataFrame(logs))
-            }
-        )
+        wandb.log({"logs": wandb.Table(dataframe=pd.DataFrame(logs))})
         for i in range(len(images)):
             wandb.log(
                 {
-                    f"{dataset1[0]['group_name']}-images": images[i]['images_group_1'],
-                    f"{dataset2[0]['group_name']}-images":images[i]['images_group_2'],
+                    f"group 1 images ({dataset1[0]['group_name']})": images[i][
+                        "images_group_1"
+                    ],
+                    f"group 2 images ({dataset2[0]['group_name']})": images[i][
+                        "images_group_2"
+                    ],
                 }
             )
     return hypotheses
+
 
 def rank(
     args: Dict,
@@ -89,8 +98,10 @@ def rank(
         table_hypotheses = wandb.Table(dataframe=pd.DataFrame(scored_hypotheses))
         wandb.log({"scored hypotheses": table_hypotheses})
         for i in range(5):
-            wandb.summary[f"top_{i}_hypothesis"] = scored_hypotheses[i]['hypothesis'].replace("\"", "")
-            wandb.summary[f"top_{i}_score"] = scored_hypotheses[i]['auroc']
+            wandb.summary[f"top_{i + 1}_difference"] = scored_hypotheses[i][
+                "hypothesis"
+            ].replace('"', "")
+            wandb.summary[f"top_{i + 1}_score"] = scored_hypotheses[i]["auroc"]
 
     scored_groundtruth = ranker.rerank_hypotheses(
         group_names,
@@ -115,7 +126,7 @@ def evaluate(args: Dict, ranked_hypotheses: List[str], group_names: List[str]) -
         group_names[1],
     )
 
-    if args["wandb"]:
+    if args["wandb"] and evaluator_args["method"] != "NullEvaluator":
         table_evaluated_hypotheses = wandb.Table(
             dataframe=pd.DataFrame(evaluated_hypotheses)
         )
@@ -143,9 +154,8 @@ def main(config):
     ranked_hypotheses = rank(args, hypotheses, dataset1, dataset2, group_names)
     # print(ranked_hypotheses)
 
-    if args["evaluator"]["method"] != "NullEvaluator":
-        logging.info("Evaluating hypotheses...")
-        metrics = evaluate(args, ranked_hypotheses, group_names)
+    logging.info("Evaluating hypotheses...")
+    metrics = evaluate(args, ranked_hypotheses, group_names)
     # print(metrics)
 
 

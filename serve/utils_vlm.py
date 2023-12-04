@@ -4,11 +4,11 @@ import threading
 
 logging.basicConfig(level=logging.INFO)
 
+import os
 from typing import Dict, List
 
 import lmdb
 import requests
-import os
 
 from serve.global_vars import BLIP_FEATURE_URL, BLIP_URL, LLAVA_URL, VLM_CACHE_FILE
 from serve.utils_general import get_from_cache, save_to_cache

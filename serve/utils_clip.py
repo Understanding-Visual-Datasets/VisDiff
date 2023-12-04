@@ -1,11 +1,11 @@
 import json
 import logging
+import os
 from typing import List
 
 import lmdb
 import numpy as np
 import requests
-import os
 
 from serve.global_vars import CLIP_CACHE_FILE, CLIP_URL
 from serve.utils_general import get_from_cache, save_to_cache
