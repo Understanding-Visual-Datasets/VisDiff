@@ -5,7 +5,7 @@
 [![Pytorch](https://img.shields.io/badge/Pytorch-2.1-red.svg)](https://pytorch.org/get-started/previous-versions/#v21)
 [![Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 
-This repo provides the PyTorch source code of our paper: [VisDiff: Describing Differences in Image Sets with Natural Language](https://arxiv.org/abs/2312.02974). Check out project page [here](https://understanding-visual-datasets.github.io/VisDiff-website/)!
+This repo provides the PyTorch source code of our paper: [Describing Differences in Image Sets with Natural Language](https://arxiv.org/abs/2312.02974). Check out project page [here](https://understanding-visual-datasets.github.io/VisDiff-website/)!
 
 ## 🔮 Abstract
 
