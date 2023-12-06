@@ -97,7 +97,7 @@ If you use this repo in your research, please cite it as follows:
 @article{VisDiff,
   title={Describing Differences in Image Sets with Natural Language},
   author={Dunlap, Lisa and Zhang, Yuhui and Wang, Xiaohan and Zhong, Ruiqi and Darrell, Trevor and Steinhardt, Jacob and Gonzalez, Joseph E. and Yeung-Levy, Serena},
-  journal={arXiv preprint arXiv:TBD},
+  journal={arXiv preprint arXiv:2312.02974},
   year={2023}
 }
 ```
