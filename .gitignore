@@ -35,6 +35,9 @@ MANIFEST
 *.manifest
 *.spec
 
+cache/
+serve/global_vars.py
+
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt
