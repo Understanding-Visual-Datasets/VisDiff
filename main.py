@@ -15,7 +15,6 @@ from components.proposer import (
     VLMProposer,
 )
 from components.ranker import CLIPRanker, LLMRanker, NullRanker, VLMRanker
-from components.sampling import classifier_sampler
 
 
 def load_config(config: str) -> Dict:
@@ -56,7 +55,6 @@ def load_data(args: Dict) -> Tuple[List[Dict], List[Dict], List[str]]:
         n_swap = int((1 - data_args["purity"]) * len(dataset1))
         dataset1 = dataset1[n_swap:] + dataset2[:n_swap]
         dataset2 = dataset2[n_swap:] + dataset1[:n_swap]
-    print(dataset1)
     return dataset1, dataset2, group_names
 
 
@@ -147,13 +145,6 @@ def main(config):
     logging.info("Loading data...")
     dataset1, dataset2, group_names = load_data(args)
     # print(dataset1, dataset2, group_names)
-
-    logging.info("test sampling...")
-    if args["proposer"]["sampling_method"] == "classifier":
-        model = classifier_sampler(
-            dataset1, dataset2, model=args["proposer"]["classifier_model"]
-        )
-        exit(0)
 
     logging.info("Proposing hypotheses...")
     hypotheses = propose(args, dataset1, dataset2)
