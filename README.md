@@ -5,7 +5,7 @@
 [![Pytorch](https://img.shields.io/badge/Pytorch-2.1-red.svg)](https://pytorch.org/get-started/previous-versions/#v21)
 [![Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 
-This repo provides the PyTorch source code of our paper: [Describing Differences in Image Sets with Natural Language](https://arxiv.org/abs/2312.02974). Check out project page [here](https://understanding-visual-datasets.github.io/VisDiff-website/)!
+This repo provides the PyTorch source code of our paper: [Describing Differences in Image Sets with Natural Language](https://arxiv.org/abs/2312.02974) (**CVPR 2024 Oral**). Check out project page [here](https://understanding-visual-datasets.github.io/VisDiff-website/)!
 
 ## 🔮 Abstract
 
@@ -97,7 +97,7 @@ If you use this repo in your research, please cite it as follows:
 @article{VisDiff,
   title={Describing Differences in Image Sets with Natural Language},
   author={Dunlap, Lisa and Zhang, Yuhui and Wang, Xiaohan and Zhong, Ruiqi and Darrell, Trevor and Steinhardt, Jacob and Gonzalez, Joseph E. and Yeung-Levy, Serena},
-  journal={arXiv preprint arXiv:2312.02974},
-  year={2023}
+  journal={Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year={2024}
 }
 ```
