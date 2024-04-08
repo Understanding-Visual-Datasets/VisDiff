@@ -94,10 +94,10 @@ For each application, we provide the corresponding codes and usages in [applicat
 
 If you use this repo in your research, please cite it as follows:
 ```
-@article{VisDiff,
+@inproceedings{VisDiff,
   title={Describing Differences in Image Sets with Natural Language},
   author={Dunlap, Lisa and Zhang, Yuhui and Wang, Xiaohan and Zhong, Ruiqi and Darrell, Trevor and Steinhardt, Jacob and Gonzalez, Joseph E. and Yeung-Levy, Serena},
-  journal={Conference on Computer Vision and Pattern Recognition (CVPR)},
+  booktitle={Conference on Computer Vision and Pattern Recognition (CVPR)},
   year={2024}
 }
 ```
