@@ -72,7 +72,7 @@ python main.py --config configs/example.yaml
 
 ### 📊 VisDiffBench (Section 5 in Paper)
 
-To evaluate our system, we collected VisDiffBench, a benchmark of 187 paired image sets with ground truth difference descriptions ([download link](https://drive.google.com/file/d/1vghFd0rB5UTBaeR5rdxhJe3s7OOdRtkY)). To evaluate performance on VisDiffBench, we ask VisDiff to output a description for each paired set and compare it to the ground truth using [GPT-4 evaluator](./components/evaluator.py).
+To evaluate our system, we collected VisDiffBench, a benchmark of 187 paired image sets with ground truth difference descriptions ([download link](https://drive.google.com/file/d/1PybUlQOesFIfgAjYlJabsyw5UHf5GOrZ/view?usp=sharing )). To evaluate performance on VisDiffBench, we ask VisDiff to output a description for each paired set and compare it to the ground truth using [GPT-4 evaluator](./components/evaluator.py).
 
 VisDiffBench is collected from the following datasets:
 
